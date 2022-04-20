@@ -4,6 +4,7 @@ const typeDefs = gql`
   type Query {
     "It returns the list of tracks for dashboard"
     tracksForHome: [Track!]!
+    track(id: ID!): Track
   }
 
   type Track {
