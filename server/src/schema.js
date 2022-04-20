@@ -13,12 +13,21 @@ const typeDefs = gql`
     thumbnail: String
     length: Int
     modulesCount: Int
+    modules: [Module!]!
+    description: String
+    numberOfViews: Int
   }
 
   type Author {
     id: ID!
     name: String!
     photo: String
+  }
+
+  type Module {
+    id: ID!
+    title: String!
+    length: Int
   }
 `;
 
