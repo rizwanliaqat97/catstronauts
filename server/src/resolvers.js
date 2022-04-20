@@ -11,6 +11,27 @@ const resolvers = {
     },
   },
 
+  Mutation: {
+    incrementNumberOfViews: async (_, { id }, { dataSources }) => {
+      try {
+        const track = await dataSources.trackAPI.incrementNumberOfViews(id);
+        return {
+          code: 200,
+          success: true,
+          message: `Number of views incremented for track id: ${id}`,
+          track,
+        };
+      } catch (error) {
+        return {
+          code: error.extensions.response.status,
+          message: error.extensions.response.body,
+          success: false,
+          track: null,
+        };
+      }
+    },
+  },
+
   Track: {
     author: ({ authorId }, _, { dataSources }) => {
       return dataSources.trackAPI.getAuthor(authorId);
